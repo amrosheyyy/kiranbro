@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kiran Bro & Anjali Chechi 🩷</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Manrope:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,600&display=swap');
+
+        /* =========================
+           RESET & GLOBALS
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f4eee7;
+            color: #302a25;
+            font-family: "Manrope", sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           BACKGROUND TEXTURE
+        ========================= */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background:
+                linear-gradient(
+                    rgba(244, 238, 231, .92),
+                    rgba(244, 238, 231, .96)
+                ),
+                url("First.jpeg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(178, 137, 93, .12),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 70%,
+                    rgba(119, 86, 61, .09),
+                    transparent 32%
+                );
+        }
+
+        /* =========================
+           OPENING SCREEN
+        ========================= */
+
+        .opening {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: #302822;
+            color: #f7f1e9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .opening.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .opening-content {
+            width: 100%;
+            max-width: 600px;
+            padding: 25px;
+        }
+
+        .opening-small {
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: .55;
+            color: #c8a47d;
+        }
+
+        .opening h1 {
+            font-family: "Libre Baskerville", serif;
+            font-size: clamp(38px, 9vw, 68px);
+            line-height: 1.1;
+            font-weight: 400;
+            margin: 22px 0 24px;
+        }
+
+        .opening p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, .68);
+            margin-bottom: 32px;
+        }
+
+        .open-btn {
+            border: 1px solid rgba(255, 255, 255, .32);
+            background: transparent;
+            color: white;
+            padding: 13px 32px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 13px;
+            letter-spacing: 1px;
+            transition: all .35s ease;
+        }
+
+        .open-btn:hover {
+            background: #f7f1e9;
+            color: #302822;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        /* =========================
+           MUSIC BUTTON
+        ========================= */
+
+        .music-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 200;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 1px solid rgba(70, 50, 35, .2);
+            background: rgba(255, 255, 255, .78);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: #5c4938;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            box-shadow: 0 8px 25px rgba(50, 35, 20, .12);
+            transition: transform 0.3s ease;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .music-btn.playing {
+            animation: musicPulse 1.8s infinite;
+        }
+
+        @keyframes musicPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.09);
+                box-shadow: 0 10px 30px rgba(200, 164, 125, .4);
+            }
+        }
+
+        /* =========================
+           FLOATING PARTICLES
+        ========================= */
+
+        .particles {
+            position: fixed;
+            inset: 0;
+            z-index: 90;
+            pointer-events: none;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+        }
+
+        .particles.active {
+            opacity: 1;
+        }
+
+        .particles span {
+            position: absolute;
+            bottom: -40px;
+            display: block;
+            opacity: 0;
+            animation: floatParticle linear infinite;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            15% {
+                opacity: .7;
+            }
+            70% {
+                opacity: .4;
+            }
+            100% {
+                transform: translateY(-112vh) rotate(180deg);
+                opacity: 0;
+            }
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .head {
+            height: 100svh;
+            min-height: 650px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 45px 28px;
+            color: white;
+            overflow: hidden;
+        }
+
+        .head-photo {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(20, 15, 11, .90) 0%,
+                    rgba(20, 15, 11, .45) 50%,
+                    rgba(20, 15, 11, .25) 100%
+                ),
+                url("Second.jpeg");
+            background-size: cover;
+            background-position: center;
+            animation: heroZoom 14s ease forwards;
+        }
+
+        @keyframes heroZoom {
+            from {
+                transform: scale(1.08);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .head-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 850px;
+            animation: heroIn 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes heroIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .head-label {
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #e2c29d;
+            font-weight: 500;
+        }
+
+        .head h1 {
+            font-family: "Libre Baskerville", serif;
+            font-size: clamp(42px, 9vw, 84px);
+            font-weight: 400;
+            line-height: 1.08;
+            margin-top: 14px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, .35);
+        }
+
+        .head-names {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #f7e1cb;
+            display: block;
+            font-size: clamp(34px, 7vw, 68px);
+            margin-top: 6px;
+        }
+
+        .head-text {
+            max-width: 540px;
+            margin-top: 22px;
+            font-size: 14px;
+            line-height: 1.85;
+            color: rgba(255, 255, 255, .78);
+        }
+
+        .scroll {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: rgba(252, 248, 248, .75);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translate(-50%, 0);
+            }
+            50% {
+                transform: translate(-50%, 7px);
+            }
+        }
+
+        /* =========================
+           STORY SECTION
+        ========================= */
+
+        .story {
+            padding: 120px 25px;
+            text-align: center;
+        }
+
+        .story-inner {
+            max-width: 720px;
+            margin: auto;
+        }
+
+        .label {
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #a17e5d;
+            font-weight: 600;
+        }
+
+        .story h2 {
+            font-family: "Libre Baskerville", serif;
+            font-size: clamp(34px, 7vw, 56px);
+            font-weight: 400;
+            line-height: 1.2;
+            margin-top: 18px;
+        }
+
+        .story p {
+            color: #6a6058;
+            font-size: 15px;
+            line-height: 2.1;
+            margin-top: 30px;
+        }
+
+        /* =========================
+           TIMELINE SECTION
+        ========================= */
+
+        .timeline-section {
+            background: #302822;
+            color: #f5eee5;
+            padding: 115px 20px;
+        }
+
+        .timeline-title {
+            text-align: center;
+            margin-bottom: 75px;
+        }
+
+        .timeline-title .label {
+            color: #c8a47d;
+        }
+
+        .timeline-title h2 {
+            font-family: "Libre Baskerville", serif;
+            font-size: clamp(36px, 7vw, 58px);
+            font-weight: 400;
+            margin-top: 16px;
+        }
+
+        .timeline {
+            max-width: 850px;
+            margin: auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(255, 255, 255, .16);
+        }
+
+        .timeline-item {
+            width: 50%;
+            padding: 0 40px 65px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: 50%;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #c8a47d;
+            box-shadow: 0 0 0 6px rgba(200, 164, 125, .15);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -5px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -5px;
+        }
+
+        .timeline-date {
+            color: #c8a47d;
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .timeline-item h3 {
+            font-family: "Libre Baskerville", serif;
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+        .timeline-item p {
+            margin-top: 10px;
+            color: rgba(245, 238, 229, .68);
+            font-size: 13.5px;
+            line-height: 1.85;
+        }
+
+        /* =========================
+           PHOTOS LOOP
+        ========================= */
+
+        .photos {
+            padding: 115px 0 100px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, .38);
+        }
+
+        .photos-heading {
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .photos-heading h2 {
+            font-family: "Libre Baskerville", serif;
+            font-size: clamp(36px, 7vw, 58px);
+            font-weight: 400;
+            margin-top: 18px;
+        }
+
+        .glow-text {
+            color: #8b6b4b;
+            animation: softGlow 2.5s ease-in-out infinite;
+        }
+
+        @keyframes softGlow {
+            0%, 100% {
+                text-shadow:
+                    0 0 4px rgba(176, 138, 102, .25),
+                    0 0 8px rgba(176, 138, 102, .15);
+            }
+            50% {
+                text-shadow:
+                    0 0 8px rgba(176, 138, 102, .7),
+                    0 0 16px rgba(176, 138, 102, .45);
+            }
+        }
+
+        .photo-loop {
+            display: flex;
+            gap: 22px;
+            width: max-content;
+            padding: 60px 20px 20px;
+            animation: loopPhotos 36s linear infinite;
+        }
+
+        .photo-loop:hover {
+            animation-play-state: paused;
+        }
+
+        .photo-card {
+            width: min(70vw, 320px);
+            height: 440px;
+            flex-shrink: 0;
+            overflow: hidden;
+            border-radius: 16px;
+            position: relative;
+            box-shadow: 0 18px 45px rgba(45, 30, 20, .14);
+            background: #2b221d;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.06);
+        }
+
+        .photo-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(15, 10, 8, .6) 0%, transparent 50%);
+        }
+
+        .photo-caption {
+            position: absolute;
+            left: 20px;
+            bottom: 20px;
+            z-index: 2;
+            color: white;
+            font-family: "Libre Baskerville", serif;
+            font-size: 17px;
+        }
+
+        @keyframes loopPhotos {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* =========================
+           FINAL MESSAGE CARD
+        ========================= */
+
+        .final {
+            min-height: 100svh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 70px 20px;
+        }
+
+        .card {
+            width: min(680px, 100%);
+            background: #302822;
+            color: #f5eee5;
+            padding: clamp(45px, 9vw, 80px);
+            text-align: center;
+            position: relative;
+            border: 1px solid rgba(200, 164, 125, .35);
+            box-shadow:
+                0 35px 90px rgba(40, 25, 15, .24),
+                inset 0 0 0 8px rgba(255, 255, 255, .02);
+            transform: rotate(-0.5deg);
+            border-radius: 4px;
+        }
+
+        .card::before {
+            content: "✦";
+            position: absolute;
+            top: 22px;
+            right: 25px;
+            color: #c8a47d;
+            font-size: 16px;
+        }
+
+        .card::after {
+            content: "✦";
+            position: absolute;
+            bottom: 22px;
+            left: 25px;
+            color: #c8a47d;
+            font-size: 13px;
+        }
+
+        .card .label {
+            color: #c8a47d;
+        }
+
+        .card h2 {
+            font-family: "Libre Baskerville", serif;
+            font-size: clamp(34px, 7vw, 58px);
+            font-weight: 400;
+            line-height: 1.15;
+            margin-top: 18px;
+        }
+
+        .card p {
+            max-width: 500px;
+            margin: 28px auto 0;
+            color: rgba(255, 255, 255, .72);
+            font-size: 14.5px;
+            line-height: 2.1;
+            letter-spacing: .3px;
+        }
+
+        .signature {
+            color: #c8a47d;
+            margin-top: 40px;
+            font-size: 13.5px;
+            letter-spacing: 2px;
+            font-style: italic;
+        }
+
+        .signature::before {
+            content: "—  ";
+            color: rgba(200, 164, 125, .5);
+        }
+
+        .signature::after {
+            content: "  —";
+            color: rgba(200, 164, 125, .5);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #302822;
+            color: rgba(255, 252, 252, .35);
+            text-align: center;
+            padding: 35px 20px;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            line-height: 1.8;
+            border-top: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        /* =========================
+           RESPONSIVE STYLES
+        ========================= */
+
+        @media (max-width: 700px) {
+            body::before {
+                background-attachment: scroll;
+            }
+
+            .opening-content {
+                padding: 20px;
+            }
+
+            .opening h1 {
+                font-size: clamp(34px, 10vw, 50px);
+            }
+
+            .head {
+                min-height: 100svh;
+                padding: 30px 20px;
+            }
+
+            .head h1 {
+                font-size: clamp(38px, 11vw, 56px);
+            }
+
+            .head-text {
+                max-width: 95%;
+                font-size: 13px;
+            }
+
+            .head-label {
+                font-size: 9.5px;
+                letter-spacing: 3px;
+            }
+
+            .scroll {
+                bottom: 18px;
+            }
+
+            .story {
+                padding: 90px 20px;
+            }
+
+            .story h2 {
+                font-size: clamp(30px, 8vw, 44px);
+            }
+
+            .story p {
+                font-size: 13.5px;
+            }
+
+            .timeline-section {
+                padding: 90px 20px;
+            }
+
+            .timeline::before {
+                left: 12px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                width: 100%;
+                margin-left: 0;
+                padding-left: 42px;
+                padding-right: 5px;
+                text-align: left;
+            }
+
+            .timeline-item:nth-child(odd) {
+                text-align: left;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 8px;
+                right: auto;
+            }
+
+            .timeline-title {
+                margin-bottom: 50px;
+            }
+
+            .timeline-item h3 {
+                font-size: 21px;
+            }
+
+            .photos {
+                padding: 85px 0 75px;
+            }
+
+            .photo-card {
+                width: 76vw;
+                height: 420px;
+            }
+
+            .final {
+                padding: 45px 15px;
+            }
+
+            .card {
+                padding: 55px 22px;
+                transform: none;
+            }
+
+            .card h2 {
+                font-size: clamp(30px, 9vw, 48px);
+            }
+
+            .card p {
+                font-size: 13.5px;
+            }
+
+            .music-btn {
+                width: 42px;
+                height: 42px;
+                top: 16px;
+                right: 16px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .head h1 {
+                font-size: 36px;
+            }
+
+            .head-text {
+                font-size: 12px;
+            }
+
+            .opening h1 {
+                font-size: 34px;
+            }
+
+            .photo-card {
+                width: 80vw;
+                height: 380px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Optional audio source + Web Audio API synthesizer fallback -->
+    <audio id="music" loop preload="auto">
+        <source src="./Saiyaara_reprise_female.mp3" type="audio/mpeg">
+        <source src="./Saiyaara.mp3" type="audio/mpeg">
+        <source src="./music.mp3" type="audio/mpeg">
+    </audio>
+
+    <button
+        class="music-btn"
+        id="musicBtn"
+        onclick="toggleMusic()"
+        aria-label="Toggle music"
+        title="Play / Pause Romantic Music">
+        ♬
+    </button>
+
+    <!-- Opening Screen -->
+    <div class="opening" id="opening">
+        <div class="opening-content">
+            <div class="opening-small">
+                A SPECIAL CELEBRATION ✦
+            </div>
+            <h1>
+                Kiran Bro & Anjali Chechi
+            </h1>
+            <p>
+                To the happiest, warmest, and most special couple... Made with love from your brother! 🤍
+            </p>
+            <button
+                class="open-btn"
+                onclick="openWebsite()">
+                Open 🤍
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="head">
+        <div class="head-photo"></div>
+        <div class="head-content">
+            <div class="head-label">
+                CELEBRATING OUR FAVOURITES
+            </div>
+            <h1>
+                Happy Wedding Anniversary
+                <span class="head-names">Kiran Bro & Anjali Chechi 🩷</span>
+            </h1>
+            <div class="head-text">
+                Happy Anniversary to my favourite Bro and Chechi! You both look so good together. Always be happy and keep smiling! 🤍
+            </div>
+        </div>
+        <div class="scroll">
+            ↓ SCROLL
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story">
+        <div class="story-inner">
+            <div class="label">
+                Our Story
+            </div>
+            <h2>
+                Two best people.<br>
+                Happy together always.
+            </h2>
+            <p>
+                Seeing Kiran Bro and Anjali Chechi happy together is always the best feeling.
+                Chechi, thank you for being so caring, friendly, and making our home happy.
+                You both are the best couple! 🤍
+            </p>
+        </div>
+    </section>
+
+    <!-- Photo Loop Gallery -->
+    <section class="photos">
+        <div class="photos-heading">
+            <div class="label glow-text">
+                Little Moments
+            </div>
+            <h2>
+                Some memories worth keeping.
+            </h2>
+        </div>
+
+        <!-- Infinite marquee with graceful fallbacks -->
+        <div class="photo-loop">
+            <div class="photo-card">
+                <img src="Third.jpeg" alt="Memory">
+                <div class="photo-caption">🤍 ✨</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="Fourth.jpeg" alt="Memory">
+                <div class="photo-caption">✨ ✦</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="Fifth.jpeg" alt="Memory">
+                <div class="photo-caption">☕ 🌿</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="Sixth.jpeg" alt="Memory">
+                <div class="photo-caption">🌿 🤍</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="Seventh.jpeg" alt="Memory">
+                <div class="photo-caption">🕊️ ✨</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="Last.jpeg" alt="Memory">
+                <div class="photo-caption">🥂 🤍</div>
+            </div>
+
+            <!-- Loop Duplicates for smooth seamless scroll -->
+            <div class="photo-card">
+                <img src="Third.jpeg" alt="Memory">
+                <div class="photo-caption">🤍 ✨</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="Fourth.jpeg" alt="Memory">
+                <div class="photo-caption">✨ ✦</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="Fifth.jpeg" alt="Memory">
+                <div class="photo-caption">☕ 🌿</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="Sixth.jpeg" alt="Memory">
+                <div class="photo-caption">🌿 🤍</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="Seventh.jpeg" alt="Memory">
+                <div class="photo-caption">🕊️ ✨</div>
+            </div>
+
+            <div class="photo-card">
+                <img src="Last.jpeg" alt="Memory">
+                <div class="photo-caption">🥂 🤍</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Greetings Card -->
+    <section class="final">
+        <div class="card">
+            <div class="label">
+                TO MY FAVOURITE TWO
+            </div>
+
+            <h2>
+                Happy Anniversary<br>
+                Kiran Bro & Anjali Chechi 🤍
+            </h2>
+
+            <p>
+                A little late, but wishing you both a very happy day! ❤️<br><br>
+                Kiran Bro, you're always such a wonderful person, and it's really nice to see you and Anjali Chechi together. Chechi, thank you for being so friendly, caring, and for bringing so much happiness to everyone around you.<br><br>
+                I hope you both always stay happy, healthy, and keep making beautiful memories together. And hopefully, we'll get to see a little one running around soon! 🥹❤️<br><br>
+                Lots of love to you both.
+            </p>
+
+            <div class="signature">
+                With lots of love, from your brother 🤍
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        Celebrating Kiran Bro & Anjali Chechi 🥹🤍
+    </footer>
+
+    <!-- Particles Container -->
+    <div class="particles" id="particles"></div>
+
+    <script>
+        const music = document.getElementById("music");
+        const musicBtn = document.getElementById("musicBtn");
+        const opening = document.getElementById("opening");
+        const particles = document.getElementById("particles");
+
+        // Web Audio synthesized ambient fallback if local MP3 is not loaded
+        let audioCtx = null;
+        let isSynthPlaying = false;
+        let synthInterval = null;
+        const romanticChords = [
+            [261.63, 329.63, 392.00, 523.25], // C major
+            [220.00, 261.63, 329.63, 440.00], // A minor
+            [174.61, 220.00, 261.63, 349.23], // F major
+            [196.00, 246.94, 293.66, 392.00]  // G major
+        ];
+        let chordIndex = 0;
+
+        function startSynthAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            isSynthPlaying = true;
+            musicBtn.classList.add("playing");
+            musicBtn.innerHTML = "♫";
+
+            function playChord() {
+                if (!isSynthPlaying || !audioCtx) return;
+                const now = audioCtx.currentTime;
+                const chord = romanticChords[chordIndex % romanticChords.length];
+                chord.forEach((freq, i) => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, now + i * 0.15);
+                    gain.gain.setValueAtTime(0.001, now + i * 0.15);
+                    gain.gain.exponentialRampToValueAtTime(0.05, now + i * 0.15 + 0.3);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.15 + 3.2);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now + i * 0.15);
+                    osc.stop(now + i * 0.15 + 3.2);
+                });
+                chordIndex++;
+            }
+
+            playChord();
+            clearInterval(synthInterval);
+            synthInterval = setInterval(playChord, 3400);
+        }
+
+        function stopSynthAudio() {
+            isSynthPlaying = false;
+            clearInterval(synthInterval);
+            musicBtn.classList.remove("playing");
+            musicBtn.innerHTML = "꩜";
+        }
+
+        function openWebsite() {
+            opening.classList.add("hide");
+            particles.classList.add("active");
+
+            const symbols = [
+                "🤍", "✨", "🌸", "🕊️", "🥂", "🌿", "💖", "🌷", "✦"
+            ];
+
+            if (particles.children.length === 0) {
+                for (let i = 0; i < 35; i++) {
+                    const particle = document.createElement("span");
+                    particle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                    particle.style.left = Math.random() * 100 + "%";
+                    particle.style.animationDuration = (7 + Math.random() * 8) + "s";
+                    particle.style.animationDelay = Math.random() * 8 + "s";
+                    particle.style.fontSize = (9 + Math.random() * 12) + "px";
+                    particles.appendChild(particle);
+                }
+            }
+
+            // Try playing file audio first; fall back to Web Audio synth if file is missing
+            music.volume = 0.35;
+            music.play()
+                .then(() => {
+                    musicBtn.classList.add("playing");
+                    musicBtn.innerHTML = "♫";
+                })
+                .catch(() => {
+                    // Start soft romantic synth notes
+                    startSynthAudio();
+                });
+
+            setTimeout(() => {
+                opening.style.display = "none";
+            }, 1000);
+        }
+
+        function toggleMusic() {
+            if (isSynthPlaying) {
+                stopSynthAudio();
+                return;
+            }
+
+            if (!music.paused) {
+                music.pause();
+                musicBtn.classList.remove("playing");
+                musicBtn.innerHTML = "꩜";
+            } else {
+                music.play()
+                    .then(() => {
+                        musicBtn.classList.add("playing");
+                        musicBtn.innerHTML = "♫";
+                    })
+                    .catch(() => {
+                        startSynthAudio();
+                    });
+            }
+        }
+    </script>
+</body>
+
+</html>

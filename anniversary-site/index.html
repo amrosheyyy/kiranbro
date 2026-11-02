@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Wedding Anniversary 🤍 | Kiran Bro & Anjali Chechi</title>
+    <meta name="description" content="A heartfelt wedding anniversary celebration website for Kiran Bro & Anjali Chechi, handcrafted with love from your brother.">
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  
+    <div class="ambient-glow"></div>
+    <canvas id="particlesCanvas"></canvas>
+
+    
+    <audio id="bgAudio" loop preload="auto">
+        <source src="Saiyaara_reprise_female.mp3" type="audio/mpeg">
+        <source src="Saiyaara.mp3" type="audio/mpeg">
+        
+    </audio>
+
+  
+    <div class="opening-overlay" id="openingOverlay">
+        <div class="stationery-card">
+            <div class="stationery-border">
+                <div class="stationery-crest">
+                    <span class="crest-letters">K & A</span>
+                    <span class="crest-sub">2026</span>
+                </div>
+                <div class="stationery-tag">For Kiran Bro & Anjali Chechi</div>
+                <h1 class="stationery-title">Happy Wedding Anniversary</h1>
+                <div class="stationery-names">Kiran & Anjali</div>
+                <p class="stationery-note">
+                    Happy Anniversary Bro and Chechi! Made a small website for you both. Hope you like it 🤍
+                </p>
+
+                <!-- Modern Tactile Open Button -->
+                <button class="open-celebration-btn" id="openBtn" aria-label="Open Celebration and Play Music">
+                    <span class="btn-icon">💌</span>
+                    <span class="btn-text">Open Card</span>
+                </button>
+
+                <div class="opening-subhint">
+                    <span>♫ Song: Saiyaara Reprise</span>
+                    <span class="subhint-divider">•</span>
+                    <a href="javascript:void(0)" id="skipAudioBtn" class="subhint-link">Open without music</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="music-widget" id="musicWidget" title="Click to play / pause music">
+        <div class="vinyl-disc" id="vinylDisc">
+            <div class="vinyl-center"></div>
+        </div>
+        <div class="music-details">
+            <span class="music-title">Saiyaara</span>
+            <span class="sound-bars">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </span>
+        </div>
+        <button class="ctrl-btn" id="playPauseBtn" aria-label="Play or Pause Music">▶</button>
+    </div>
+
+    
+    <div class="site-wrapper">
+
+        
+        <header class="hero-section">
+            <div class="hero-container">
+                
+                <div class="hero-visual">
+                    <div class="polaroid-stack">
+                        
+                        <div class="hero-polaroid main-polaroid">
+                            <div class="polaroid-photo">
+                                <img src="First.jpeg" alt="Kiran Bro & Anjali Chechi">
+                            </div>
+                            <div class="polaroid-meta">
+                                <div class="polaroid-handwriting">Kiran & Anjali</div>
+                            </div>
+                        </div>
+
+                        <!-- Mini Accent Polaroid Underneath -->
+                        <div class="hero-polaroid sub-polaroid">
+                            <div class="polaroid-photo mini">
+                                <img src="Second.jpeg" alt="Kiran Bro & Anjali Chechi">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+              
+                <div class="hero-narrative">
+                    <h1 class="hero-headline">
+                        Happy Wedding Anniversary, Kiran Bro & Anjali Chechi!
+                    </h1>
+                    <p class="hero-description">
+                        You both are the best couple. Seeing you both happy together makes me very happy. Always be like this and keep smiling!
+                    </p>
+
+                    <!-- Milestone Ribbon (Simple & Natural) -->
+                    <div class="hero-milestone-ribbon">
+                        <span class="milestone-icon">💍</span>
+                        <div class="milestone-text">
+                            <strong>Celebrating Another Year Together</strong>
+                            <span>Good food • Long drives • Lots of fun memories</span>
+                        </div>
+                    </div>
+
+                    <!-- Quick Navigation Actions -->
+                    <div class="hero-actions">
+                        <a href="#wish" class="hero-btn primary-btn">
+                            <span>💌 Read My Message</span>
+                        </a>
+                        <a href="#memories" class="hero-btn secondary-btn">
+                            <span>📸 See Photos</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="scroll-indicator" id="scrollIndicator">
+                <span class="scroll-text">Scroll down to see more</span>
+                <span class="scroll-arrow">↓</span>
+            </div>
+        </header>
+
+        
+        <section class="gallery-section" id="memories">
+            <div class="container">
+                <div class="gallery-header">
+                    <div class="section-tag">Photos</div>
+                    <h2 class="section-heading">Some Good Memories</h2>
+                </div>
+
+                <div class="polaroid-grid" id="polaroidGrid">
+                 
+                </div>
+            </div>
+        </section>
+
+      
+        <section class="letter-section" id="wish">
+            <div class="container">
+                <div class="letter-envelope-box">
+                    <div class="letter-header">
+                        <div class="section-tag">A Message For You Both</div>
+                        <h2 class="letter-salutation">Dear Kiran Bro & Anjali Chechi,</h2>
+                    </div>
+
+                    <div class="letter-body">
+                        <p>
+                            A little late, but wishing you both a very happy day! ❤️
+                        </p>
+                        <p>
+                            Kiran Bro, you're always such a wonderful person, and it's really nice to see you and Anjali Chechi together. Chechi, thank you for being so friendly, caring, and for bringing so much happiness to everyone around you.
+                        </p>
+                        <p>
+                            I hope you both always stay happy, healthy, and keep making beautiful memories together. And hopefully, we'll get to see a little one running around soon! 🥹❤️
+                        </p>
+                        <p>
+                            Lots of love to you both.
+                        </p>
+                    </div>
+
+                    <div class="letter-signature">
+                        <div class="signature-script">With lots of love,</div>
+                        <div class="signature-role">Ambu 🤍</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <footer>
+            <p class="footer-text">
+                "Happy Wedding Anniversary once again to my favourite Bro and Chechi!"
+            </p>
+            <div class="footer-copy">
+                Ambu🥹🫂
+            </div>
+        </footer>
+
+    </div>
+
+    
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" title="Close (Esc)">✕</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" title="Previous photo">‹</button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" title="Next photo">›</button>
+        
+        <div class="lightbox-content">
+            <div class="lightbox-img-wrap">
+                <img id="lightboxImg" src="" alt="Anniversary Photo">
+            </div>
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
+
+   
+    <script src="script.js"></script>
+</body>
+</html>
